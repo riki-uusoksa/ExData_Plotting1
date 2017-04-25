@@ -9,7 +9,7 @@ df <- read.table(text = grep('^[1,2]/2/2007', readLines(file), value=TRUE), col.
 df$Datetime <- as.POSIXct(paste(as.Date(df$Date, format='%d/%m/%Y'), df$Time))
 
 #Set the current figure to have four plots
-par(mfrow=c(2, 2))
+par(mfrow=c(2, 2), mar=c(4,4,2,1), oma=c(0, 0, 2, 0))
 
 #Plot the continuous df$Datetime against df$Global_active_power
 with(df, {
@@ -18,7 +18,7 @@ with(df, {
   plot(Sub_metering_1 ~ Datetime, col='black', type='l', xlab='', ylab='Energy sub metering')
   lines(Sub_metering_2 ~ Datetime, col='red')
   lines(Sub_metering_3 ~ Datetime, col='blue')
-  legend('topright', col=c('black', 'red', 'blue'), bty='n', lty=1, legend=c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'), pt.cex=1, cex=0.8)
+  legend('topright', col=c('black', 'red', 'blue'), bty='n', lty=1, legend=c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'))
   plot(Datetime, Global_reactive_power, type='l', xlab='datetime')
 })
 
