@@ -8,6 +8,9 @@ df <- read.table(text = grep('^[1,2]/2/2007', readLines(file), value=TRUE), col.
 #Create a Datetime -column from formatted df$Date and df$Time -columns
 df$Datetime <- as.POSIXct(paste(as.Date(df$Date, format='%d/%m/%Y'), df$Time))
 
+#Open png-device
+png('Plot3.png', width=480, height=480)
+
 #Make the plot and set the scales with Sub_metering_1, then add other values
 with(df, {
     plot(Sub_metering_1 ~ Datetime, col='black', type='l', xlab='', ylab='Energy sub metering')
@@ -18,6 +21,5 @@ with(df, {
 #Add legend to top right
 legend('topright', col=c('black', 'red', 'blue'), lty=1, lwd=2, legend=c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'))
 
-#Copy the active plot from display to png-file and turn off the png-file -device
-dev.copy(png, width=680, height=480, 'Plot3.png')
+#Turn off the png-file -device
 dev.off()

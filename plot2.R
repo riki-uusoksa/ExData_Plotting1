@@ -9,7 +9,7 @@ df <- read.table(text = grep('^[1,2]/2/2007', readLines(file), value=TRUE), col.
 df$Datetime <- as.POSIXct(paste(as.Date(df$Date, format='%d/%m/%Y'), df$Time))
 
 #Plot the continuous df$Datetime against df$Global_active_power
-with(df, plot(Datetime, Global_active_power, type='l', xlab='', ylab='Global Active Power (kilowatts'))
+with(df, plot(Datetime, Global_active_power, type='l', xlab='', ylab='Global Active Power (kilowatts)'))
 
 #Copy the active plot from display to png-file and turn off the png-file -device
 dev.copy(png, width=480, height=480, 'Plot2.png')

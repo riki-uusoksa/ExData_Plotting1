@@ -8,6 +8,9 @@ df <- read.table(text = grep('^[1,2]/2/2007', readLines(file), value=TRUE), col.
 #Create a Datetime -column from formatted df$Date and df$Time -columns
 df$Datetime <- as.POSIXct(paste(as.Date(df$Date, format='%d/%m/%Y'), df$Time))
 
+#Open png-device
+png('Plot4.png', width=480, height=480)
+
 #Set the current figure to have four plots
 par(mfrow=c(2, 2), mar=c(4,4,2,1), oma=c(0, 0, 2, 0))
 
@@ -22,6 +25,5 @@ with(df, {
   plot(Datetime, Global_reactive_power, type='l', xlab='datetime')
 })
 
-#Copy the active plot from display to png-file and turn off the png-file -device
-dev.copy(png, width=680, height=480, 'Plot4.png')
+#Turn off the png-file -device
 dev.off()
